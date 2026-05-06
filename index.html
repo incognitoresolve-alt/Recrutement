@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opportunité commerciale indépendante à Liège | BYA-X</title>
+  <meta name="description" content="Teste ton profil en 2 minutes pour une opportunité commerciale indépendante à Liège. Flexibilité, commission, accompagnement et évolution possible." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --bg:       #07080c;
+      --bg2:      #0c0e16;
+      --surface:  rgba(255,255,255,.055);
+      --surface2: rgba(255,255,255,.03);
+      --line:     rgba(255,255,255,.09);
+      --line2:    rgba(255,255,255,.05);
+      --text:     #e8eef8;
+      --muted:    #8a9ab5;
+      --muted2:   #5e6e88;
+      --gold:     #c9a84c;
+      --gold2:    #e8c96a;
+      --blue:     #3b82f6;
+      --green:    #22c55e;
+      --warn:     #f59e0b;
+      --radius:   20px;
+      --shadow:   0 32px 80px rgba(0,0,0,.55);
+    }
+
+    /* ── RESET & BASE ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND AURA ─────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(201,168,76,.13), transparent),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(59,130,246,.09), transparent),
+        radial-gradient(ellipse 100% 70% at 50% 50%, rgba(7,8,12,.0), var(--bg));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NOISE OVERLAY ───────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── HEADER BAR ──────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp .6s ease forwards;
+    }
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      letter-spacing: .02em;
+      color: var(--gold2);
+    }
+    .brand span { color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 300; display: block; letter-spacing: .05em; }
+    .location-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface2);
+      font-size: .82rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+    .location-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ── CARDS ───────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    .heroCard { padding: 40px 36px; opacity: 0; animation: fadeUp .7s .1s ease forwards; }
+    .infoCard  { padding: 30px 28px; opacity: 0; animation: fadeUp .7s .2s ease forwards; }
+
+    /* ── EYEBROW ─────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,168,76,.3);
+      background: rgba(201,168,76,.08);
+      color: var(--gold2);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    /* ── HEADING ─────────────────────────────────────────── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.06;
+      letter-spacing: -.02em;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+    h1 em { font-style: italic; color: var(--gold2); }
+
+    .heroCard > p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      max-width: 58ch;
+      font-weight: 300;
+    }
+
+    /* ── BENEFITS ────────────────────────────────────────── */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .benefit {
+      padding: 16px;
+      border: 1px solid var(--line2);
+      border-radius: 14px;
+      background: var(--surface2);
+      transition: border-color .2s, background .2s;
+    }
+    .benefit:hover { border-color: rgba(201,168,76,.25); background: rgba(201,168,76,.05); }
+    .benefit strong { display: flex; align-items: center; gap: 7px; color: #fff; font-weight: 700; font-size: .93rem; margin-bottom: 5px; }
+    .benefit strong::before { content: attr(data-icon); font-size: 1rem; }
+    .benefit span { color: var(--muted); font-size: .88rem; line-height: 1.55; font-weight: 300; }
+
+    /* ── CTA ROW ─────────────────────────────────────────── */
+    .ctaRow { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .ctaBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      text-decoration: none;
+      border: 0;
+      transition: transform .18s, box-shadow .18s, opacity .2s;
+      letter-spacing: .01em;
+    }
+    .ctaBtn:hover { transform: translateY(-2px); }
+    .primary {
+      background: linear-gradient(135deg, var(--gold) 0%, #a8872e 100%);
+      color: #07080c;
+      box-shadow: 0 8px 28px rgba(201,168,76,.35);
+      min-width: 200px;
+    }
+    .primary:hover { box-shadow: 0 12px 36px rgba(201,168,76,.48); }
+    .ghost {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .ghost:hover { background: rgba(255,255,255,.1); }
+
+    /* ── INFO CARD STATS ─────────────────────────────────── */
+    .infoCard h2 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 18px; }
+    .stats { display: grid; gap: 10px; }
+    .stat {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line2);
+    }
+    .stat-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.2);
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+    }
+    .stat b { display: block; font-size: .9rem; color: #fff; margin-bottom: 3px; }
+    .stat span { color: var(--muted); font-size: .83rem; line-height: 1.5; font-weight: 300; }
+    .tip {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.18);
+      color: #d4c08a;
+      font-size: .87rem;
+      line-height: 1.65;
+    }
+    .footerNote { margin-top: 14px; color: var(--muted2); font-size: .83rem; line-height: 1.6; }
+
+    /* ── NOTICE ──────────────────────────────────────────── */
+    .notice {
+      margin: 20px 0;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--warn);
+      border-radius: var(--radius);
+      background: rgba(245,158,11,.05);
+      color: #d4c47a;
+      font-size: .9rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp .7s .35s ease forwards;
+    }
+
+    /* ── MAIN GRID ───────────────────────────────────────── */
+    .mainGrid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 20px;
+      align-items: start;
+      opacity: 0;
+      animation: fadeUp .7s .4s ease forwards;
+    }
+    .formCard { padding: 32px 30px; }
+    .sideCard { padding: 28px; position: sticky; top: 20px; }
+
+    /* ── FORM HEADER ─────────────────────────────────────── */
+    .sectionTitle {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .sectionText { color: var(--muted); font-size: .9rem; line-height: 1.7; margin-bottom: 22px; font-weight: 300; }
+
+    /* ── FORM FIELDS ─────────────────────────────────────── */
+    .fieldGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .full { grid-column: 1 / -1; }
+    label {
+      font-size: .82rem;
+      font-weight: 700;
+      color: #c8d8f0;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(7,8,12,.7);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+      appearance: none;
+    }
+    input::placeholder { color: var(--muted2); }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a9ab5' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    select option { background: #0c0e16; }
+    input:focus, select:focus {
+      border-color: rgba(201,168,76,.7);
+      background: rgba(7,8,12,.9);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+    }
+    input.invalid, select.invalid {
+      border-color: rgba(239,68,68,.6);
+      box-shadow: 0 0 0 3px rgba(239,68,68,.1);
+    }
+    input.valid, select.valid { border-color: rgba(34,197,94,.45); }
+
+    /* ── RADIO GROUPS ────────────────────────────────────── */
+    .group {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface2);
+    }
+    .groupLabel {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 13px;
+      line-height: 1.5;
+    }
+    .options { display: grid; gap: 8px; }
+    .opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: transparent;
+      border: 1px solid var(--line2);
+      cursor: pointer;
+      line-height: 1.5;
+      transition: background .18s, border-color .18s;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .opt:hover { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.12); }
+    .opt.selected { background: rgba(201,168,76,.08); border-color: rgba(201,168,76,.35); color: var(--text); }
+    .opt input[type="radio"] { display: none; }
+    .opt-check {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--muted2);
+      margin-top: 1px;
+      display: grid;
+      place-items: center;
+      transition: border-color .18s;
+    }
+    .opt.selected .opt-check {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+    .opt.selected .opt-check::after {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #07080c;
+    }
+    .group.invalid-group .groupLabel::after {
+      content: ' — Sélection requise';
+      font-size: .78rem;
+      font-weight: 400;
+      color: #fca5a5;
+      margin-left: 6px;
+    }
+
+    /* ── ACTIONS ─────────────────────────────────────────── */
+    .actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+    .submitBtn {
+      background: linear-gradient(135deg, var(--gold) 0%, #a8872e 100%);
+      color: #07080c;
+      font-weight: 900;
+      font-size: .97rem;
+      box-shadow: 0 8px 28px rgba(201,168,76,.3);
+      min-width: 230px;
+      letter-spacing: .01em;
+    }
+    .submitBtn:hover { box-shadow: 0 12px 36px rgba(201,168,76,.45); }
+    .submitBtn:disabled { opacity: .55; transform: none !important; cursor: not-allowed; box-shadow: none; }
+    .resetBtn { background: var(--surface); color: var(--text); border: 1px solid var(--line); }
+
+    /* ── FEEDBACK ────────────────────────────────────────── */
+    .feedback { margin-top: 14px; min-height: 22px; font-size: .9rem; }
+    .feedback.error { color: #fca5a5; }
+    .feedback.success { color: #86efac; }
+
+    /* ── SIDE CARD ───────────────────────────────────────── */
+    .sideCard h2 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 16px; }
+    .sideList { list-style: none; display: grid; gap: 9px; }
+    .sideList li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .sideList li::before {
+      content: '→';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .divider { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+
+    /* ── PROGRESS BAR ────────────────────────────────────── */
+    .progressWrap { margin-bottom: 20px; }
+    .progressLabel { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted2); margin-bottom: 7px; }
+    .progressBar { height: 3px; background: var(--line); border-radius: 999px; overflow: hidden; }
+    .progressFill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); border-radius: 999px; width: 0%; transition: width .4s ease; }
+
+    /* ── THANKS ──────────────────────────────────────────── */
+    #thanksSection {
+      margin-top: 20px;
+      text-align: center;
+      padding: 56px 32px;
+    }
+    .thanksBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.25);
+      color: #86efac;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    #thanksSection h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
+    #thanksSection p { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 600px; margin: 0 auto; font-weight: 300; }
+
+    /* ── HIDDEN ──────────────────────────────────────────── */
+    .hidden { display: none !important; }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 8px var(--gold); }
+      50%       { box-shadow: 0 0 16px var(--gold), 0 0 24px rgba(201,168,76,.4); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(7,8,12,.3);
+      border-top-color: #07080c;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 960px) {
+      .hero, .mainGrid { grid-template-columns: 1fr; }
+      .sideCard { position: static; }
+    }
+
+    /* Phone — serious mobile-first pass */
+    @media (max-width: 640px) {
+      .wrap { padding: 20px 14px 56px; }
+
+      /* Hero */
+      .heroCard { padding: 24px 20px; }
+      .infoCard  { padding: 22px 18px; }
+      h1 { font-size: 1.75rem; letter-spacing: -.02em; line-height: 1.1; }
+      .heroCard > p { font-size: .95rem; }
+      .benefits { grid-template-columns: 1fr; gap: 8px; margin-top: 20px; }
+      .benefit { padding: 13px 14px; }
+
+      /* CTA */
+      .ctaRow { flex-direction: column; gap: 10px; margin-top: 22px; }
+      .ctaBtn  { width: 100%; min-width: 0; padding: 16px 20px; font-size: 1rem; border-radius: 14px; }
+
+      /* Info card stats: stack icon + text vertically feels cramped, keep horizontal but smaller */
+      .stat { padding: 12px; }
+      .stat-icon { width: 32px; height: 32px; font-size: .88rem; }
+
+      /* Notice */
+      .notice { font-size: .86rem; padding: 14px 16px; }
+
+      /* Form card */
+      .formCard { padding: 22px 18px; }
+      .fieldGrid { grid-template-columns: 1fr; gap: 12px; }
+
+      /* CRITICAL: 16px min on inputs prevents iOS auto-zoom */
+      input, select { font-size: 16px; padding: 15px 14px; border-radius: 12px; }
+      select { padding-right: 38px; }
+
+      /* Bigger tap targets for radio options */
+      .opt { padding: 15px 14px; font-size: .92rem; }
+      .opt-check { width: 20px; height: 20px; }
+      .group { padding: 16px 14px; margin-top: 16px; }
+      .groupLabel { font-size: .88rem; }
+
+      /* Actions */
+      .actions { flex-direction: column; gap: 10px; margin-top: 18px; }
+      .submitBtn, .resetBtn { width: 100%; min-width: 0; padding: 17px 20px; font-size: 1rem; }
+
+      /* Side card: less prominent on phone, compact */
+      .sideCard { padding: 20px 18px; }
+      .sideList li { font-size: .88rem; }
+
+      /* Thanks */
+      #thanksSection { padding: 40px 20px; }
+      #thanksSection h2 { font-size: 1.7rem; }
+    }
+
+    /* Very small phones */
+    @media (max-width: 380px) {
+      .wrap { padding: 16px 12px 48px; }
+      h1 { font-size: 1.55rem; }
+      .heroCard { padding: 20px 16px; }
+      .formCard { padding: 18px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroCard card">
+        <div class="eyebrow">Statut indépendant</div>
+        <h1>Tu veux une activité <em>flexible</em>,<br>où tes efforts se voient vraiment&nbsp;?</h1>
+        <p>Je ne cherche pas un employé, mais un vrai partenaire. Si tu veux une activité commerciale indépendante avec de l'accompagnement, de l'autonomie et une rémunération qui dépend directement de ton implication, tu es au bon endroit.</p>
+        <div class="benefits">
+          <div class="benefit">
+            <strong data-icon="⚡">Flexibilité totale</strong>
+            <span>Tu t'organises comme tu veux.</span>
+          </div>
+          <div class="benefit">
+            <strong data-icon="📈">100 % au mérite</strong>
+            <span>Pas de plafond — c'est toi qui décides.</span>
+          </div>
+          <div class="benefit">
+            <strong data-icon="🎯">Accompagnement concret</strong>
+            <span>Tu apprends à convaincre avec méthode.</span>
+          </div>
+          <div class="benefit">
+            <strong data-icon="🏗️">Évolution possible</strong>
+            <span>À terme, tu peux bâtir ta propre équipe.</span>
+          </div>
+        </div>
+        <div class="ctaRow">
+          <a class="ctaBtn primary" href="#formSection">Tester mon profil</a>
+          <a class="ctaBtn ghost" href="#infoSection">Voir si ça me correspond</a>
+        </div>
+      </div>
+
+      <aside class="infoCard card" id="infoSection">
+        <h2>Ce qu'on recherche</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-icon">🎓</div>
+            <div>
+              <b>CESS minimum</b>
+              <span>Le diplôme compte, mais le potentiel compte autant.</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">🏹</div>
+            <div>
+              <b>Esprit chasseur</b>
+              <span>Curiosité, téléphone, persévérance, envie d'aller chercher le oui.</span>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">🌱</div>
+            <div>
+              <b>Envie de construire</b>
+              <span>Pas juste vendre : apprendre, progresser, évoluer.</span>
+            </div>
+          </div>
+        </div>
+        <div class="tip">Tu n'as pas besoin d'un parcours parfait. Si tu es à l'aise avec le contact humain et que tu veux te dépasser, le projet peut te convenir.</div>
+        <p class="footerNote">Le formulaire ci-dessous prend environ 2 minutes et permet d'évaluer si le projet a du sens pour toi.</p>
+      </aside>
+    </section>
+
+    <!-- NOTICE -->
+    <div class="notice">
+      Ici, on cherche surtout des personnes sincères, motivées et capables de tenir une cadence commerciale. Le plus important : avoir le CESS, aimer le challenge et ne pas avoir froid aux yeux.
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="mainGrid">
+
+      <!-- FORM CARD -->
+      <section class="formCard card" id="formSection">
+        <h2 class="sectionTitle">Parle-nous de toi</h2>
+        <p class="sectionText">Réponds simplement. Plus c'est honnête, plus on pourra voir si le projet correspond à ton profil.</p>
+
+        <!-- PROGRESS BAR -->
+        <div class="progressWrap">
+          <div class="progressLabel">
+            <span>Progression</span>
+            <span id="progressPct">0 %</span>
+          </div>
+          <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+        </div>
+
+        <form id="candidateForm" novalidate>
+          <div class="fieldGrid">
+            <div class="field">
+              <label for="firstName">Prénom</label>
+              <input id="firstName" required autocomplete="given-name" placeholder="Ton prénom" />
+            </div>
+            <div class="field">
+              <label for="lastName">Nom</label>
+              <input id="lastName" required autocomplete="family-name" placeholder="Ton nom" />
+            </div>
+            <div class="field">
+              <label for="birthDate">Date de naissance</label>
+              <input id="birthDate" type="date" required />
+            </div>
+            <div class="field">
+              <label for="city">Ville</label>
+              <input id="city" required autocomplete="address-level2" placeholder="Ta ville" />
+            </div>
+            <div class="field full">
+              <label for="education">Diplôme le plus élevé</label>
+              <select id="education" required>
+                <option value="">Sélectionner…</option>
+                <option>Inférieur au CESS</option>
+                <option>CESS</option>
+                <option>Bachelier ou plus</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="status">Motivation principale</label>
+              <select id="status" required>
+                <option value="">Sélectionner…</option>
+                <option>Je cherche d'abord la sécurité</option>
+                <option>Je suis motivé(e) par la commission</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Q1 -->
+          <div class="group" id="group-resilience">
+            <div class="groupLabel">Quand tu prends beaucoup de "non" au téléphone, tu fais quoi&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="resilience" data-value="Je me décourage vite">
+                <input type="radio" name="resilience" value="Je me décourage vite" />
+                <div class="opt-check"></div>
+                <span>Je me décourage vite</span>
+              </label>
+              <label class="opt" data-group="resilience" data-value="Je fais une pause et j'analyse">
+                <input type="radio" name="resilience" value="Je fais une pause et j'analyse" />
+                <div class="opt-check"></div>
+                <span>Je fais une pause et j'analyse</span>
+              </label>
+              <label class="opt" data-group="resilience" data-value="Je continue avec constance">
+                <input type="radio" name="resilience" value="Je continue avec constance" />
+                <div class="opt-check"></div>
+                <span>Je continue avec constance et je vais chercher le prochain oui</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="group" id="group-ambition">
+            <div class="groupLabel">Dans 2 à 3 ans, tu veux être où&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="ambition" data-value="Cherche surtout la stabilité">
+                <input type="radio" name="ambition" value="Cherche surtout la stabilité" />
+                <div class="opt-check"></div>
+                <span>Stabilisé(e) dans un cadre rassurant</span>
+              </label>
+              <label class="opt" data-group="ambition" data-value="Vise une forte performance commerciale">
+                <input type="radio" name="ambition" value="Vise une forte performance commerciale" />
+                <div class="opt-check"></div>
+                <span>Très performant(e) commercialement</span>
+              </label>
+              <label class="opt" data-group="ambition" data-value="Évoluer vers un rôle d'encadrement">
+                <input type="radio" name="ambition" value="Évoluer vers un rôle d'encadrement" />
+                <div class="opt-check"></div>
+                <span>En évolution vers un rôle d'encadrement</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="group" id="group-coldCalling">
+            <div class="groupLabel">Et le téléphone, tu t'y sens comment&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="coldCalling" data-value="Aucune expérience">
+                <input type="radio" name="coldCalling" value="Aucune expérience" />
+                <div class="opt-check"></div>
+                <span>Je n'ai pas d'expérience</span>
+              </label>
+              <label class="opt" data-group="coldCalling" data-value="Un peu, sans affinité particulière">
+                <input type="radio" name="coldCalling" value="Un peu, sans affinité particulière" />
+                <div class="opt-check"></div>
+                <span>J'ai déjà essayé un peu</span>
+              </label>
+              <label class="opt" data-group="coldCalling" data-value="Très à l'aise">
+                <input type="radio" name="coldCalling" value="Très à l'aise" />
+                <div class="opt-check"></div>
+                <span>Je suis très à l'aise avec la prospection téléphonique</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submitBtn" class="ctaBtn submitBtn">Envoyer ma candidature</button>
+            <button type="button" id="resetBtn" class="ctaBtn resetBtn">Réinitialiser</button>
+          </div>
+          <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <!-- SIDE CARD -->
+      <aside class="sideCard card">
+        <h2>Comment ça se passe ?</h2>
+        <ul class="sideList">
+          <li>Tu remplis le formulaire en 2 minutes.</li>
+          <li>On analyse ton profil avec soin.</li>
+          <li>Si ça matche, on te recontacte rapidement.</li>
+          <li>On échange pour voir si le projet te correspond vraiment.</li>
+        </ul>
+        <hr class="divider" />
+        <div class="tip">Pas de promesse creuse : si ton profil ne correspond pas, on te le dit franchement. Si ça colle, on avance ensemble.</div>
+      </aside>
+    </div>
+
+    <!-- THANKS -->
+    <section class="card thanks hidden" id="thanksSection" style="margin-top:20px;">
+      <div class="thanksBadge">✓ Reçu</div>
+      <h2>Ta candidature est bien envoyée</h2>
+      <p>Merci pour ton temps. Si ton profil correspond à ce qu'on recherche, on te recontactera rapidement pour la suite.</p>
+    </section>
+
+  </div><!-- /.wrap -->
+
+  <script>
+    /* ── ELEMENTS ──────────────────────────────────────── */
+    const form        = document.getElementById('candidateForm');
+    const submitBtn   = document.getElementById('submitBtn');
+    const resetBtn    = document.getElementById('resetBtn');
+    const feedback    = document.getElementById('feedback');
+    const formSection = document.getElementById('formSection');
+    const thanksSec   = document.getElementById('thanksSection');
+    const progressFill = document.getElementById('progressFill');
+    const progressPct  = document.getElementById('progressPct');
+
+    const FIELDS = ['firstName','lastName','birthDate','city','education','status'];
+    const RADIOS  = ['resilience','ambition','coldCalling'];
+    const TOTAL   = FIELDS.length + RADIOS.length;
+
+    /* ── CUSTOM RADIO BEHAVIOUR ────────────────────────── */
+    document.querySelectorAll('.opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const group = opt.dataset.group;
+        const value = opt.dataset.value;
+        // deselect siblings
+        document.querySelectorAll(`.opt[data-group="${group}"]`).forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input[type="radio"]').checked = true;
+        // clear group invalid state
+        document.getElementById(`group-${group}`)?.classList.remove('invalid-group');
+        // mark fields
+        FIELDS.forEach(validateField);
+        updateProgress();
+      });
+    });
+
+    /* ── PROGRESS ──────────────────────────────────────── */
+    function countFilled() {
+      let n = FIELDS.filter(id => document.getElementById(id)?.value.trim()).length;
+      n += RADIOS.filter(name => form.querySelector(`input[name="${name}"]:checked`)).length;
+      return n;
+    }
+    function updateProgress() {
+      const pct = Math.round((countFilled() / TOTAL) * 100);
+      progressFill.style.width = pct + '%';
+      progressPct.textContent = pct + ' %';
+    }
+
+    /* ── LIVE VALIDATION ───────────────────────────────── */
+    function validateField(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const ok = el.value.trim() !== '';
+      el.classList.toggle('valid', ok);
+      el.classList.toggle('invalid', !ok && el.dataset.touched === '1');
+    }
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', () => { el.dataset.touched = '1'; validateField(id); updateProgress(); });
+      el.addEventListener('blur',  () => { el.dataset.touched = '1'; validateField(id); });
+      el.addEventListener('change',() => { el.dataset.touched = '1'; validateField(id); updateProgress(); });
+    });
+
+    /* ── RADIO VAL HELPER ──────────────────────────────── */
+    const getRadio = name => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+    /* ── IS COMPLETE ───────────────────────────────────── */
+    function isComplete() {
+      return FIELDS.every(id => document.getElementById(id)?.value.trim()) &&
+             RADIOS.every(n => getRadio(n));
+    }
+
+    /* ── MSG HELPER ────────────────────────────────────── */
+    function msg(text, cls = '') {
+      feedback.className = `feedback ${cls}`;
+      feedback.textContent = text;
+    }
+
+    /* ── RESET ─────────────────────────────────────────── */
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+      document.querySelectorAll('.invalid-group').forEach(g => g.classList.remove('invalid-group'));
+      FIELDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.remove('valid','invalid'); delete el.dataset.touched; }
+      });
+      msg('');
+      updateProgress();
+    });
+
+    /* ── SUBMIT ────────────────────────────────────────── */
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      msg('');
+
+      // mark all as touched for visual feedback
+      FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.dataset.touched = '1'; validateField(id); });
+
+      if (!isComplete()) {
+        // highlight missing radio groups
+        RADIOS.forEach(name => {
+          if (!getRadio(name)) document.getElementById(`group-${name}`)?.classList.add('invalid-group');
+        });
+        msg('Prends une minute pour compléter tous les champs.', 'error');
+        return;
+      }
+
+      const payload = {
+        firstName:   document.getElementById('firstName').value.trim(),
+        lastName:    document.getElementById('lastName').value.trim(),
+        birthDate:   document.getElementById('birthDate').value,
+        city:        document.getElementById('city').value.trim(),
+        education:   document.getElementById('education').value,
+        status:      document.getElementById('status').value,
+        resilience:  getRadio('resilience'),
+        ambition:    getRadio('ambition'),
+        coldCalling: getRadio('coldCalling'),
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span>Analyse en cours…';
+
+      try {
+        const res  = await fetch('/.netlify/functions/process', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Une erreur est survenue lors de l\'envoi.');
+        formSection.classList.add('hidden');
+        thanksSec.classList.remove('hidden');
+        thanksSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {
+        msg(err.message || 'Impossible d\'envoyer la candidature. Réessaie dans un instant.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Envoyer ma candidature';
+      }
+    });
+
+    /* ── INIT ──────────────────────────────────────────── */
+    updateProgress();
+  </script>
+</body>
+</html>
