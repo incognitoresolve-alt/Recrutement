@@ -659,6 +659,14 @@
               <label for="city">Ville</label>
               <input id="city" required autocomplete="address-level2" placeholder="Ta ville" />
             </div>
+            <div class="field">
+              <label for="gsm">GSM</label>
+              <input id="gsm" type="tel" required autocomplete="tel" placeholder="+32 4XX XX XX XX" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" required autocomplete="email" placeholder="ton@email.com" />
+            </div>
             <div class="field full">
               <label for="education">Diplôme le plus élevé</label>
               <select id="education" required>
@@ -786,7 +794,7 @@
     const progressFill = document.getElementById('progressFill');
     const progressPct  = document.getElementById('progressPct');
 
-    const FIELDS = ['firstName','lastName','birthDate','city','education','status'];
+    const FIELDS = ['firstName','lastName','birthDate','city','gsm','email','education','status'];
     const RADIOS  = ['resilience','ambition','coldCalling'];
     const TOTAL   = FIELDS.length + RADIOS.length;
 
@@ -823,8 +831,10 @@
     function validateField(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      const ok = el.value.trim() !== '';
-      el.classList.toggle('valid', ok);
+      let ok = el.value.trim() !== '';
+      if (ok && id === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+      if (ok && id === 'gsm')   ok = /^[\d\s\+\-\(\)]{7,20}$/.test(el.value.trim());
+      el.classList.toggle('valid',   ok);
       el.classList.toggle('invalid', !ok && el.dataset.touched === '1');
     }
     FIELDS.forEach(id => {
@@ -840,7 +850,10 @@
 
     /* ── IS COMPLETE ───────────────────────────────────── */
     function isComplete() {
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email')?.value.trim());
+      const gsmOk   = /^[\d\s\+\-\(\)]{7,20}$/.test(document.getElementById('gsm')?.value.trim());
       return FIELDS.every(id => document.getElementById(id)?.value.trim()) &&
+             emailOk && gsmOk &&
              RADIOS.every(n => getRadio(n));
     }
 
@@ -885,6 +898,8 @@
         lastName:    document.getElementById('lastName').value.trim(),
         birthDate:   document.getElementById('birthDate').value,
         city:        document.getElementById('city').value.trim(),
+        gsm:         document.getElementById('gsm').value.trim(),
+        email:       document.getElementById('email').value.trim(),
         education:   document.getElementById('education').value,
         status:      document.getElementById('status').value,
         resilience:  getRadio('resilience'),
