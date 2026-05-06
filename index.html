@@ -684,6 +684,37 @@
                 <option>Je suis motivé(e) par la commission</option>
               </select>
             </div>
+            <div class="field full">
+              <label for="currentStatus">Situation professionnelle actuelle</label>
+              <select id="currentStatus" required>
+                <option value="">Sélectionner…</option>
+                <option>Sans emploi</option>
+                <option>Salarié(e) en poste</option>
+                <option>Indépendant(e) actif(ve)</option>
+                <option>Étudiant(e)</option>
+                <option>En transition / reconversion</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="availability">Disponibilité hebdomadaire pour cette activité</label>
+              <select id="availability" required>
+                <option value="">Sélectionner…</option>
+                <option>Moins de 5h par semaine</option>
+                <option>5 à 15h par semaine</option>
+                <option>15 à 25h par semaine</option>
+                <option>Plus de 25h (quasi temps plein)</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="incomeTarget">Revenu complémentaire visé dans les 6 premiers mois</label>
+              <select id="incomeTarget" required>
+                <option value="">Sélectionner…</option>
+                <option>Moins de 300 € / mois</option>
+                <option>300 à 700 € / mois</option>
+                <option>700 à 1 500 € / mois</option>
+                <option>Plus de 1 500 € / mois (objectif principal)</option>
+              </select>
+            </div>
           </div>
 
           <!-- Q1 -->
@@ -752,6 +783,99 @@
             </div>
           </div>
 
+          <!-- Q4 -->
+          <div class="group" id="group-independence">
+            <div class="groupLabel">As-tu déjà travaillé en tant qu'indépendant(e)&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="independence" data-value="Jamais">
+                <input type="radio" name="independence" value="Jamais" />
+                <div class="opt-check"></div>
+                <span>Non, jamais — c'est une nouveauté pour moi</span>
+              </label>
+              <label class="opt" data-group="independence" data-value="Oui, dans le passé">
+                <input type="radio" name="independence" value="Oui, dans le passé" />
+                <div class="opt-check"></div>
+                <span>Oui, j'ai déjà eu une expérience en indépendant(e)</span>
+              </label>
+              <label class="opt" data-group="independence" data-value="Oui, encore aujourd'hui">
+                <input type="radio" name="independence" value="Oui, encore aujourd'hui" />
+                <div class="opt-check"></div>
+                <span>Oui, je suis actuellement actif(ve) en tant qu'indépendant(e)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="group" id="group-commercialExp">
+            <div class="groupLabel">As-tu déjà eu une fonction commerciale ou de relation client&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="commercialExp" data-value="Non, jamais">
+                <input type="radio" name="commercialExp" value="Non, jamais" />
+                <div class="opt-check"></div>
+                <span>Non, c'est un domaine que je découvre</span>
+              </label>
+              <label class="opt" data-group="commercialExp" data-value="Oui, occasionnellement">
+                <input type="radio" name="commercialExp" value="Oui, occasionnellement" />
+                <div class="opt-check"></div>
+                <span>Oui, de façon occasionnelle ou partielle</span>
+              </label>
+              <label class="opt" data-group="commercialExp" data-value="Oui, c'est mon cœur de métier">
+                <input type="radio" name="commercialExp" value="Oui, c'est mon cœur de métier" />
+                <div class="opt-check"></div>
+                <span>Oui, c'est au cœur de mon parcours professionnel</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="group" id="group-network">
+            <div class="groupLabel">Comment décrirais-tu ton réseau dans ta région&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="network" data-value="Limité">
+                <input type="radio" name="network" value="Limité" />
+                <div class="opt-check"></div>
+                <span>Plutôt limité — je suis assez discret(e)</span>
+              </label>
+              <label class="opt" data-group="network" data-value="Moyen">
+                <input type="radio" name="network" value="Moyen" />
+                <div class="opt-check"></div>
+                <span>Moyen — j'ai quelques contacts utiles</span>
+              </label>
+              <label class="opt" data-group="network" data-value="Large">
+                <input type="radio" name="network" value="Large" />
+                <div class="opt-check"></div>
+                <span>Large — je connais beaucoup de monde et j'entretiens mes relations</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="group" id="group-mainBlocker">
+            <div class="groupLabel">Qu'est-ce qui te freinerait le plus dans cette activité&nbsp;?</div>
+            <div class="options">
+              <label class="opt" data-group="mainBlocker" data-value="Parler à des inconnus">
+                <input type="radio" name="mainBlocker" value="Parler à des inconnus" />
+                <div class="opt-check"></div>
+                <span>Aborder des personnes que je ne connais pas</span>
+              </label>
+              <label class="opt" data-group="mainBlocker" data-value="Gérer les refus">
+                <input type="radio" name="mainBlocker" value="Gérer les refus" />
+                <div class="opt-check"></div>
+                <span>Encaisser les refus répétés</span>
+              </label>
+              <label class="opt" data-group="mainBlocker" data-value="L'aspect administratif">
+                <input type="radio" name="mainBlocker" value="L'aspect administratif" />
+                <div class="opt-check"></div>
+                <span>Gérer l'administratif lié au statut indépendant</span>
+              </label>
+              <label class="opt" data-group="mainBlocker" data-value="Rien, je suis prêt(e)">
+                <input type="radio" name="mainBlocker" value="Rien, je suis prêt(e)" />
+                <div class="opt-check"></div>
+                <span>Rien de particulier — je suis prêt(e) à me lancer</span>
+              </label>
+            </div>
+          </div>
+
           <div class="actions">
             <button type="submit" id="submitBtn" class="ctaBtn submitBtn">Envoyer ma candidature</button>
             <button type="button" id="resetBtn" class="ctaBtn resetBtn">Réinitialiser</button>
@@ -794,8 +918,8 @@
     const progressFill = document.getElementById('progressFill');
     const progressPct  = document.getElementById('progressPct');
 
-    const FIELDS = ['firstName','lastName','birthDate','city','gsm','email','education','status'];
-    const RADIOS  = ['resilience','ambition','coldCalling'];
+    const FIELDS = ['firstName','lastName','birthDate','city','gsm','email','education','status','currentStatus','availability','incomeTarget'];
+    const RADIOS  = ['resilience','ambition','coldCalling','independence','commercialExp','network','mainBlocker'];
     const TOTAL   = FIELDS.length + RADIOS.length;
 
     /* ── CUSTOM RADIO BEHAVIOUR ────────────────────────── */
@@ -894,17 +1018,24 @@
       }
 
       const payload = {
-        firstName:   document.getElementById('firstName').value.trim(),
-        lastName:    document.getElementById('lastName').value.trim(),
-        birthDate:   document.getElementById('birthDate').value,
-        city:        document.getElementById('city').value.trim(),
-        gsm:         document.getElementById('gsm').value.trim(),
-        email:       document.getElementById('email').value.trim(),
-        education:   document.getElementById('education').value,
-        status:      document.getElementById('status').value,
-        resilience:  getRadio('resilience'),
-        ambition:    getRadio('ambition'),
-        coldCalling: getRadio('coldCalling'),
+        firstName:      document.getElementById('firstName').value.trim(),
+        lastName:       document.getElementById('lastName').value.trim(),
+        birthDate:      document.getElementById('birthDate').value,
+        city:           document.getElementById('city').value.trim(),
+        gsm:            document.getElementById('gsm').value.trim(),
+        email:          document.getElementById('email').value.trim(),
+        education:      document.getElementById('education').value,
+        status:         document.getElementById('status').value,
+        currentStatus:  document.getElementById('currentStatus').value,
+        availability:   document.getElementById('availability').value,
+        incomeTarget:   document.getElementById('incomeTarget').value,
+        resilience:     getRadio('resilience'),
+        ambition:       getRadio('ambition'),
+        coldCalling:    getRadio('coldCalling'),
+        independence:   getRadio('independence'),
+        commercialExp:  getRadio('commercialExp'),
+        network:        getRadio('network'),
+        mainBlocker:    getRadio('mainBlocker'),
       };
 
       submitBtn.disabled = true;
