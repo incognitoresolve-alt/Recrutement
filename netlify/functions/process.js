@@ -53,10 +53,14 @@ const ALLOWED = {
 };
 
 function validateBody(body) {
-  const required = ["firstName","lastName","birthDate","city","education","status","resilience","ambition","coldCalling"];
+  const required = ["firstName","lastName","birthDate","city","gsm","email","education","status","resilience","ambition","coldCalling"];
   for (const key of required) {
     if (!body[key] || sanitize(body[key]) === "") return `Champ manquant ou vide : ${key}`;
   }
+  // Email format
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) return "Format email invalide.";
+  // GSM format
+  if (!/^[\d\s\+\-\(\)]{7,20}$/.test(body.gsm)) return "Format GSM invalide.";
   // Date sanity
   const d = new Date(body.birthDate);
   if (Number.isNaN(d.getTime())) return "Date de naissance invalide.";
@@ -159,6 +163,8 @@ function buildEmailHtml(body, analysis, ageText) {
   <div style="border:1px solid #e5e7eb;border-top:none;padding:24px 28px;border-radius:0 0 12px 12px">
     <p style="margin:0 0 6px"><strong>Candidat :</strong> ${fullName}</p>
     <p style="margin:0 0 6px"><strong>Ville :</strong> ${escapeHtml(body.city)}</p>
+    <p style="margin:0 0 6px"><strong>GSM :</strong> ${escapeHtml(body.gsm)}</p>
+    <p style="margin:0 0 6px"><strong>Email :</strong> ${escapeHtml(body.email)}</p>
     <p style="margin:0 0 16px"><strong>Âge :</strong> ${escapeHtml(ageText)}</p>
 
     <div style="background:${categoryColor}18;border:1px solid ${categoryColor}44;border-radius:8px;padding:16px;margin-bottom:20px">
@@ -197,6 +203,8 @@ function buildEmailText(body, analysis, ageText) {
     "=== Nouvelle candidature ===",
     `Candidat      : ${fullName}`,
     `Ville         : ${body.city}`,
+    `GSM           : ${body.gsm}`,
+    `Email         : ${body.email}`,
     `Âge           : ${ageText}`,
     "",
     `Catégorie     : ${analysis.category || ""}`,
@@ -225,15 +233,20 @@ async function sendBrevoEmail({ apiKey, subject, htmlContent, textContent }) {
       "api-key":      apiKey,
     },
     body: JSON.stringify({
-      sender:      { name: "Filtre Candidatures BYA-X", email: NOTIF_EMAIL },
-      to:          [{ email: NOTIF_EMAIL }],
+      sender:      { name: "Candidatures BYA-X", email: NOTIF_EMAIL },
+      to:          [{ email: NOTIF_EMAIL, name: "Boris BYA-X" }],
       subject,
       htmlContent,
       textContent,
     }),
   });
+
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.message || `Brevo error ${res.status}`);
+  console.log("[Brevo] Status:", res.status, "| Response:", JSON.stringify(data));
+
+  if (!res.ok) {
+    throw new Error(data.message || `Brevo error ${res.status}`);
+  }
   return data;
 }
 
